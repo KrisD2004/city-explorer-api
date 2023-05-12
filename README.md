@@ -1,35 +1,48 @@
 # city-explorer-api
 
-**Author**: Your Name Goes Here
+**Author**: Kristian Dotson
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+
+This application is a weather API that allows users to get the forecast of a certain locations. The weather data is stored in a JSON file, and users can query the API using latitude, longitude, or city name. This app uses Node js and express js frameworks.
+
+
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+
+To run this application on your local machine, you will need to have Node.js and npm (Node Package Manager) installed. Then, follow these steps:
+
+step 1: Clone the repository
+
+step 2 : Install the dependencies by running npm install in the terminal
+
+3: Run the server by running npm start in the terminal
+
+The server will start running on port 3001, and you can access it by going to http://localhost:3001/weather.
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+
+The application includes a Forecast class that follows a specific format for creating forecast objects. These objects are created from the weather data and stored in an array. When the API server receives a GET request at the /weather endpoint, it extracts the latitude, longitude, and search query parameters from the request and searches the weather data JSON file for a matching location. If a match is found, the server sends back the forecast data for that location using the forecast objects previously created. If there is no matching location, an error message is sent back to the client.
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+09-06-2023 10:00am - Initial version of the application with the ability to search for weather forecast by latitude, longitude or city name.
+
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 
 
-Name of feature: ________________________________
+Name of feature: adding weather info for the city 
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1 day
 
-Start time: _____
+Start time: __9am___
 
-Finish time: _____
+Finish time: ___10pm__
 
-Actual time needed to complete: _____
+Actual time needed to complete: __almost a day___
 
 
