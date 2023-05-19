@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+
+// Fetch movies data from an API
 exports.movies = (req, res) => {
     const MovieApi = "63c34b8a26182e7318d549b0a065285f"
     const title = req.query.title
@@ -16,6 +18,7 @@ exports.movies = (req, res) => {
     })
 };
 
+// Movie Class
 class Movie {
     constructor(title, overview, average_votes, total_votes, image_url, popularity, released_on) {
         this.title = title;

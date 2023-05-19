@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-
+// Getting the weather data from an api
 exports.weather = (req, res) => {
     const { city } = req.query;
     const API = "81ee4af530ca4e15877158c4ecc15efe"

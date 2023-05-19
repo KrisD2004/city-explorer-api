@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
 
 })
 
+// Route for weather endpoint
 app.get('/weather', Forecast.weather)
 
 // (req, res) => {
@@ -55,7 +56,9 @@ app.get('/weather', Forecast.weather)
 //         });
 // });
 
+// Route for movies endpoint
 app.get('/movies', Movie.movies)
+
 // (req, res) => {
 //     const MovieApi = "63c34b8a26182e7318d549b0a065285f"
 //     const title = req.query.title
