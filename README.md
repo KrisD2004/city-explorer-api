@@ -35,7 +35,7 @@ The application includes a Forecast class that follows a specific format for cre
 
 
 
-Name of feature: adding weather info for the city 
+## Name of feature: adding weather info for certain cities. 
 
 Estimate of time needed to complete: 1 day
 
@@ -44,5 +44,40 @@ Start time: __9am___
 Finish time: ___10pm__
 
 Actual time needed to complete: __almost a day___
+
+
+## Name of feature: Weather info API for all cities
+
+Estimate of time needed to complete: 5 hours
+
+Start time: 9:30am
+
+Finish time: 2:45pm
+
+Actual time needed to complete: 5
+
+## Name of feature: Weather and Movie info API for all cities
+
+Estimate of time needed to complete: 24 hours
+
+Start time: 9:05am
+
+Finish time: 4:45pm
+
+Actual time needed to complete: 7 hours and 40 minutes
+
+## Name of feature: Modularize the back-end codebase
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 10:00am
+
+Finish time: 10:15am
+
+Actual time needed to complete: 15 mintues
+
+
+
+
 
 
