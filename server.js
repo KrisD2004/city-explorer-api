@@ -5,6 +5,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const Forecast = require('./weather')
+const Movie = require('./movie')
 
 
 // Load weather data from a JSON file
@@ -25,47 +27,50 @@ app.get('/', (req, res) => {
 
 })
 
-app.get('/weather', (req, res) => {
-    const { city } = req.query;
-    const API = "81ee4af530ca4e15877158c4ecc15efe"
-    const URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API}`
-    axios.get(URL)
-        .then(response => {
-            // Map the weather data to an array of Forecast objects
-            let dataForecast = response.data.data.map(element => {
-                console.log(response.data)
-                let date = new Date(element.datetime)
+app.get('/weather', Forecast.weather)
 
-                return new Forecast(date, element.weather.description, response.data.lat, response.data.lon, response.data.city_name)
-            })
-            console.log(dataForecast)
+// (req, res) => {
+//     const { city } = req.query;
+//     const API = "81ee4af530ca4e15877158c4ecc15efe"
+//     const URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${API}`
+//     axios.get(URL)
+//         .then(response => {
+//             // Map the weather data to an array of Forecast objects
+//             let dataForecast = response.data.data.map(element => {
+//                 console.log(response.data)
+//                 let date = new Date(element.datetime)
+
+//                 return new Forecast(date, element.weather.description, response.data.lat, response.data.lon, response.data.city_name)
+//             })
+//             console.log(dataForecast)
 
 
-            // Send the array of Forecast objects to the client
-            res.send(dataForecast);
-        })
-        .catch(err => {
-            console.error(err)
-            console.log(err.response.statusText)
-            res.status(500).send('Something went wrong!' );
-        });
-});
+//             // Send the array of Forecast objects to the client
+//             res.send(dataForecast);
+//         })
+//         .catch(err => {
+//             console.error(err)
+//             console.log(err.response.statusText)
+//             res.status(500).send('Something went wrong!' );
+//         });
+// });
 
-app.get('/movies', (req, res) => {
-    const MovieApi = "63c34b8a26182e7318d549b0a065285f"
-    const title = req.query.title
-    const UrlMovie = `https://api.themoviedb.org/3/search/movie?api_key=${MovieApi}&query=${title}`
-    axios.get(UrlMovie)
-    .then(response => {
+app.get('/movies', Movie.movies)
+// (req, res) => {
+//     const MovieApi = "63c34b8a26182e7318d549b0a065285f"
+//     const title = req.query.title
+//     const UrlMovie = `https://api.themoviedb.org/3/search/movie?api_key=${MovieApi}&query=${title}`
+//     axios.get(UrlMovie)
+//     .then(response => {
         
-        let cityMovie = response.data.results 
-        res.send(cityMovie);
-    })
-    .catch(error => {
-        console.error(error);
-        res.status(500).send('Something has happend!')
-    })
-})
+//         let cityMovie = response.data.results 
+//         res.send(cityMovie);
+//     })
+//     .catch(error => {
+//         console.error(error);
+//         res.status(500).send('Something has happend!')
+//     })
+// })
 
 // .then(response => {
 
@@ -148,26 +153,26 @@ app.get('/movies', (req, res) => {
 app.listen(port, () => console.log(`Server is running on port ${port}`))
 
 // class for the searched city weather forcast and movies playing in the city
-class Forecast {
-    constructor(date, description, lat, lon, city_name) {
-        this.date = date;
-        this.description = description;
-        this.lat = lat;
-        this.lon = lon;
-        this.city_name = city_name;
+// class Forecast {
+//     constructor(date, description, lat, lon, city_name) {
+//         this.date = date;
+//         this.description = description;
+//         this.lat = lat;
+//         this.lon = lon;
+//         this.city_name = city_name;
 
-    }
-}
+//     }
+// }
  
-class Movie {
-    constructor(title, overview, average_votes, total_votes, image_url, popularity, released_on) {
-        this.title = title;
-        this.overview = overview;
-        this.average_votes = average_votes;
-        this.total_votes = total_votes;
-        this.image_url = image_url;
-        this.popularity = popularity;
-        this.released_on = released_on;
-    }
-}
+// class Movie {
+//     constructor(title, overview, average_votes, total_votes, image_url, popularity, released_on) {
+//         this.title = title;
+//         this.overview = overview;
+//         this.average_votes = average_votes;
+//         this.total_votes = total_votes;
+//         this.image_url = image_url;
+//         this.popularity = popularity;
+//         this.released_on = released_on;
+//     }
+// }
 
