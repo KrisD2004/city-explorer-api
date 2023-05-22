@@ -26,11 +26,11 @@ exports.movies = (req, res) => {
             const movies = cityMovie.map(movie => new Movie(
                 movie.title,
                 movie.overview,
-                movie.vote_average,
-                movie.vote_count,
-                movie.poster_path,
+                movie.average_votes,
+                movie.total_votes,
+                movie.image_url,
                 movie.popularity,
-                movie.release_date
+                movie.release_on
             ));
 
 
