@@ -10,24 +10,37 @@ exports.movies = (req, res) => {
     const UrlMovie = `https://api.themoviedb.org/3/search/movie?api_key=${MovieApi}&query=${title}`
 
 
-
+    // Checking if the movie is already cached
     if (movieCache[title]) {
         res.send(movieCache[title]);
         return;
     }
 
+    // If the movie is not cached, get it from the API
     axios.get(UrlMovie)
-    .then(response => {
-        
-        let cityMovie = response.data.results 
+        .then(response => {
 
-        movieCache[title] = movies; // Cache the movies
-        res.send(cityMovie);
-    })
-    .catch(error => {
-        console.error(error);
-        res.status(500).send('Something has happend!')
-    })
+            let cityMovie = response.data.results
+
+            // Create an instance of the Movie class using the fetched data
+            const movies = cityMovie.map(movie => new Movie(
+                movie.title,
+                movie.overview,
+                movie.vote_average,
+                movie.vote_count,
+                movie.poster_path,
+                movie.popularity,
+                movie.release_date
+            ));
+
+
+            movieCache[title] = movies; // Cache the movies
+            res.send(cityMovie);
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).send('Something has happend!')
+        })
 };
 
 // Movie Class
