@@ -20,9 +20,9 @@ exports.movies = (req, res) => {
     axios.get(UrlMovie)
         .then(response => {
 
-            let cityMovie = response.data.results
+            let cityMovie = response.data.results;
 
-            // Create an instance of the Movie class using the fetched data
+            // Created a new Movie class using the fetched data
             const movies = cityMovie.map(movie => new Movie(
                 movie.title,
                 movie.overview,
