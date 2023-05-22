@@ -1,15 +1,27 @@
 const axios = require('axios');
 
+const movieCache = {};
+
 
 // Fetch movies data from an API
 exports.movies = (req, res) => {
     const MovieApi = "63c34b8a26182e7318d549b0a065285f"
     const title = req.query.title
     const UrlMovie = `https://api.themoviedb.org/3/search/movie?api_key=${MovieApi}&query=${title}`
+
+
+
+    if (movieCache[title]) {
+        res.send(movieCache[title]);
+        return;
+    }
+
     axios.get(UrlMovie)
     .then(response => {
         
         let cityMovie = response.data.results 
+
+        movieCache[title] = movies; // Cache the movies
         res.send(cityMovie);
     })
     .catch(error => {
